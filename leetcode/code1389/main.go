@@ -9,17 +9,15 @@ func main() {
 }
 
 func createTargetArray(nums []int, index []int) []int {
-	target :=make(map[int]int)
-	for _,v := range index {
-		for _,l := range nums{
-			if v == l{
-				target[v] = l
-			} else if v!=l {
-				target[v] = l
-			} 
-		}
+	var output []int
+	for i, val := range nums {
+		if index[i] < len(output) {
+            output = append(output[:index[i]], append([]int{val}, output[index[i]:]...)...)
+        } else {
+			fmt.Println(output)
+            output = append(output, val)
+        }	
 	}
-	fmt.Println(target)
 
-    return []int{23}
+    return output
 }
