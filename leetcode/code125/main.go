@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"regexp"
 	"strings"
+	"unicode"
 )
 
 func main() {
@@ -11,15 +11,22 @@ func main() {
 }
 
 func isPalindrome(s string) bool {
-	nonAlphanumericRegex := regexp.MustCompile(`[^a-zA-Z0-9 ]+`)
-	removed := nonAlphanumericRegex.ReplaceAllString(s, "")
-	trimmedS := strings.ReplaceAll(removed, " ", "")
-	toLower := strings.ToLower(trimmedS)
-	var backward string
+	clearedStr := strings.Map(func(r rune) rune {
+		if !unicode.IsLetter(r) && !unicode.IsNumber(r) {
+			return -1
+		}
+		return unicode.ToLower(r)
+	}, s)
+	strArr := []rune(clearedStr)
 
-	for i := len(toLower); i > 0; i-- {
-		backward += string(toLower[i-1])
+	left, right := 0, len(strArr)-1
+	for left < right {
+		if strArr[left] != strArr[right] {
+			return false
+		}
+		left++
+		right--
 	}
-	fmt.Println(backward)
-	return toLower == backward
+
+	return true
 }
