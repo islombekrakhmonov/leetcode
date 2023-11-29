@@ -7,15 +7,14 @@ func main() {
 }
 
 func sortedSquares(nums []int) []int {
-	var output []int
-	for _,v := range nums{
-		output = append(output, v*v)
+	for i,v := range nums{
+		nums[i] = v*v
 	}
 
-	sorting(output)
+	sorting(nums)
 	
 	
-    return output
+    return nums
 }
 
 func sorting(nums []int) []int{
