@@ -10,7 +10,20 @@ REGISTRY=${REGISTRY}
 TAG=latest
 ENV_TAG=latest
 # Including
-include .build_info
+# include .build_info
+
+pull-proto-module:
+	git submodule update --init --recursive
+
+update-proto-module:
+	git submodule update --remote --merge
+
+copy-proto-module:
+	rm -rf ${CURRENT_DIR}/protos
+	rsync -rv --exclude={'/.git','LICENSE','README.md'} ${CURRENT_DIR}/logger_protos/* ${CURRENT_DIR}/protos
+
+gen-proto-module:
+	./scripts/gen_proto.sh ${CURRENT_DIR}
 
 go:
 	go run  ${CURRENT_DIR}/cmd/main.go 

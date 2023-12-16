@@ -11,6 +11,15 @@ const (
 	CollectionName = "mongo"
 )
 
+const (
+	// DebugMode indicates service mode is debug.
+	DebugMode = "debug"
+	// TestMode indicates service mode is test.
+	TestMode = "test"
+	// ReleaseMode indicates service mode is release.
+	ReleaseMode = "release"
+)
+
 type Config struct {
 	Environment   string
 	MongoHost     string
@@ -20,6 +29,7 @@ type Config struct {
 	MongoUser     string
 	LogLevel      string
 	Port          string
+	Host		  string
 }
 
 func getOrReturnDefaultValue(key string, defaultValue interface{}) interface{} {
@@ -43,6 +53,7 @@ func Load() Config {
 	cfg.MongoPassword = cast.ToString(getOrReturnDefaultValue("MONGO_PASSWORD", "password"))
 	cfg.LogLevel = cast.ToString(getOrReturnDefaultValue("LOG_LEVEL", "debug"))
 	cfg.Port = cast.ToString(getOrReturnDefaultValue("PORT", ":8080"))
+	cfg.Host = cast.ToString(getOrReturnDefaultValue("HOST", "localhost"))
 
 	return cfg
 

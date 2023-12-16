@@ -45,9 +45,7 @@ func initDependencies() {
 
 	log.Info("Connected to MongoDB", logger.Any("database: ", connDB.Name()))
 	strg = storage.NewProductStorage(connDB)
-	
 }
-
 
 func main() {
 	initDependencies()
@@ -63,5 +61,4 @@ func main() {
 		log.Error("Something went wrong", logger.Error(err))
 		panic(err)
 	}
-
 }

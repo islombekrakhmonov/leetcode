@@ -1,0 +1,48 @@
+syntax="proto3";
+
+package logger_protos;
+option go_package="genproto/logger_protos";
+
+
+service LogService {
+    rpc Create(CreateLogRequest) returns (LogPKey) {}
+    rpc GetList(GetListLogRequest) returns (GetListLogResponse) {}
+    rpc GetSingle(LogPKey) returns (Log) {}
+}
+
+
+message Log{
+    string id = 1;
+    string type_id = 2;
+    string title = 3;
+    string account_id = 4;
+}
+
+message LogPKey{
+    string id = 1;
+}
+
+message GetListLogResponse{
+    repeated Log items = 1;
+}
+
+message GetListLogRequest{
+    int32 page = 1;
+    int32 limit = 2;
+    string search = 3;
+}
+
+message CreateLogRequest{
+    Log item = 1;
+}
+
+message UpdateLogRequest{
+    Log item = 1;
+}
+
+message DeleteLogRequest{
+    LogPKey pkey = 1;
+}
+
+
+

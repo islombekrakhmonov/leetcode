@@ -1,0 +1,46 @@
+syntax="proto3";
+
+package logger_protos;
+option go_package="genproto/logger_protos";
+
+service TypeService {
+    rpc Create(CreateTypeRequest) returns (TypePKey) {}
+    rpc GetList(GetListTypeRequest) returns (GetListTypeResponse) {}
+    rpc GetSingle(TypePKey) returns (Type) {}
+}
+
+
+message Type{
+    string id = 1;
+    string slug = 2;
+    string expiration_date = 3;
+}
+
+message TypePKey{
+    string id = 1;
+}
+
+message GetListTypeResponse{
+    repeated Type items = 1;
+}
+
+message GetListTypeRequest{
+    int32 page = 1;
+    int32 limit = 2;
+    string search = 3;
+}
+
+message CreateTypeRequest{
+    Type item = 1;
+}
+
+message UpdateTypeRequest{
+    Type item = 1;
+}
+
+message DeleteTypeRequest{
+    TypePKey pkey = 1;
+}
+
+
+
