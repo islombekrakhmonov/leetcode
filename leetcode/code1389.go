@@ -7,13 +7,15 @@ func main() {
 }
 
 func createTargetArray(nums []int, index []int)[]int{
-	var output [5]int
+	target := make([]int, len(nums))
 
-    for i:=0;i<len(nums);i++{
-		for j:=0;j<len(index);j++{
-			output[j] = nums[i]
-		}
-	}
+	for idx, i := range index {
+        for j := len(target)-1; j > i; j-- {
+            target[j] = target[j-1]
+        }
+        
+        target[i] = nums[idx]
+    }
 
-	return output[:]
+	return target
 }
