@@ -1,20 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func main() {
 	fmt.Println(countPairs([]int{-1,1,2,3,1}, 2))
 }
 
 func countPairs(nums []int, target int) (output int) {
-    n := len(nums) 
+	sort.Ints(nums)
+	left, right := 0,len(nums)-1 
 
-	for i :=0; i<n; i++{
-		for j:=i+1; j<n; j++{
-			if nums[i] + nums[j] < target{
-				output++
-			}
+	for left < right {
+		if nums[right] + nums[left] < target {
+			output += right - left 
+			left++
+		} else {
+			right--
 		}
 	}
+	
 	return output
 }

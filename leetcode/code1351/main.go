@@ -7,13 +7,23 @@ func main() {
 }
 
 func countNegatives(grid [][]int) int {
-	var output int
-	for _,v:= range grid {
-		for _,k := range v {
-			if k < 0 {
-				output++
-			}
-		} 
+    totalCount := 0
+    for _, row := range grid {
+        totalCount += countNegativesInRow(row)
+		fmt.Println(totalCount)
+    }
+    return totalCount
+}
+
+func countNegativesInRow(row []int) int {
+    left, right := 0, len(row)
+    for left < right {
+        mid := left + (right-left)/2
+        if row[mid] < 0 {
+            right = mid
+        } else {
+            left = mid + 1
+        }
 	}
-    return output
+    return len(row) - left
 }
