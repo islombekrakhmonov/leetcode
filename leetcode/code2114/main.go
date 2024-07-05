@@ -10,17 +10,17 @@ func main() {
 }
 
 func mostWordsFound(sentences []string) int {
-    var max int
-	
-	for _,v := range sentences{
+	var max int
+
+	for _, v := range sentences {
 		var output int
-		for _,l := range v{
-			if string(l) == " "{
-			output ++
+		for _, l := range v {
+			if string(l) == " " {
+				output++
 			}
 		}
 		if output > max {
-			max = output+1
+			max = output + 1
 		}
 	}
 	return max
