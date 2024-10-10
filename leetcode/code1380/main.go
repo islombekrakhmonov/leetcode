@@ -6,35 +6,36 @@ import (
 )
 
 func main() {
-	fmt.Println(luckyNumbers([][]int{{3,7,8}, {9,11,13}, {15,16,17}}))
+	fmt.Println(luckyNumbers([][]int{{3, 7, 8}, {9, 11, 13}, {15, 16, 17}}))
 }
 
 func luckyNumbers(matrix [][]int) []int {
 	var output []int
-	var min = math.MaxInt
-	var max = math.MinInt 
-    
-	for i:=0; i<len(matrix);i++ {
-		for j:=0; j < len(matrix[i]);j++{
-			if matrix[i][j] < min {
-				min = matrix[i][j]
+
+	for row := 0; row < len(matrix); row++ {
+		rowMin := math.MaxInt
+		colIndex := 0
+
+		for col := 0; col < len(matrix[row]); col++ {
+			if matrix[row][col] < rowMin {
+				rowMin = matrix[row][col]
+				colIndex = col
 			}
 		}
 
-		for k:=0; k<len(matrix); k++{
-			if matrix[j][i] > max {
-				max = matrix[j][i]
+		isMaxInCol := true
+		for i := 0; i < len(matrix); i++ {
+			if matrix[i][colIndex] > rowMin {
+				isMaxInCol = false
+				break
 			}
 		}
 
-		fmt.Println(max, min)
-
-		if max == min {
-			output = append(output, max)
+		if isMaxInCol {
+			output = append(output, rowMin)
 		}
 
-		min = math.MaxInt
-		max = math.MinInt
 	}
+
 	return output
 }
