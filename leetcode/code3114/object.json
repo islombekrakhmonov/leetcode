@@ -1,0 +1,79 @@
+{
+    "data": {
+        "match": {
+            "agent_id": "2687c66e-b2d9-4781-9f80-47dfbde4e37d"
+        },
+        "lookups": [
+            {
+                "from": "widget_languages",
+                "from_field": "widgets_id",
+                "to_field": "guid",
+                "as": "default_language",
+                "pipeline": [
+                    {
+                        "$match": {
+                            "default_value": true
+                        }
+                    },
+                    {
+                        "$lookup": {
+                            "from": "languages",
+                            "localField": "languages_id",
+                            "foreignField": "guid",
+                            "as": "languages",
+                            "pipeline": [
+                                {
+                                    "$project": {
+                                        "__v": 0,
+                                        "_id": 0,
+                                        "createdAt": 0,
+                                        "updatedAt": 0
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "$project": {
+                            "__v": 0,
+                            "_id": 0,
+                            "test-validate-widget_disable": 0,
+                            "createdAt": 0,
+                            "updatedAt": 0
+                        }
+                    }
+                ]
+            },
+            {
+                "from": "widget_currencies",
+                "from_field": "widgets_id",
+                "to_field": "guid",
+                "as": "default_currency",
+                "pipeline": [
+                    {
+                        "$match": {
+                            "default_value": true
+                        }
+                    },
+                    {
+                        "$project": {
+                            "__v": 0,
+                            "_id": 0,
+                            "test-validate-widget_disable": 0,
+                            "createdAt": 0,
+                            "updatedAt": 0
+                        }
+                    }
+                ]
+            }
+        ],
+        "project_query": {
+            "default_language": {
+                "$first": "$default_language"
+            },
+            "default_currency": {
+                "$first": "$default_currency"
+            }
+        }
+    }
+}

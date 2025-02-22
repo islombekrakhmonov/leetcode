@@ -1,0 +1,222 @@
+{
+    "alert": {
+        "rule": {
+            "id": "1",
+            "carrierFsCode": "HY",
+            "flightNumber": "514",
+            "departureAirportFsCode": "ICN",
+            "arrivalAirportFsCode": "TAS",
+            "departure": "2024-12-26T13:03:17.581",
+            "arrival": "2024-12-26T21:03:17.581",
+            "name": "name",
+            "description": "description",
+            "ruleEvents": {
+                "ruleEvent": [
+                    {
+                        "type": "ALL_CHANGES"
+                    }
+                ]
+            },
+            "delivery": {
+                "format": "JSON",
+                "destination": "smtp://islombek.rakhmonov@easyto.travel"
+            }
+        },
+        "flightStatus": {
+            "flightId": "1",
+            "carrierFsCode": "HY",
+            "operatingCarrierFsCode": "HY",
+            "primaryCarrierFsCode": "HY",
+            "flightNumber": "514",
+            "departureAirportFsCode": "ICN",
+            "arrivalAirportFsCode": "TAS",
+            "departureDate": {
+                "dateUtc": "2024-12-26T13:03:17.581Z",
+                "dateLocal": "2024-12-26T13:03:17.581"
+            },
+            "arrivalDate": {
+                "dateUtc": "2024-12-26T21:03:17.581Z",
+                "dateLocal": "2024-12-26T21:03:17.581"
+            },
+            "status": "A",
+            "schedule": {
+                "flightType": "J",
+                "serviceClasses": "RFJY"
+            },
+            "operationalTimes": {
+                "publishedDeparture": {
+                    "dateUtc": "2024-12-26T13:03:17.581Z",
+                    "dateLocal": "2024-12-26T13:03:17.581"
+                },
+                "estimatedGateDeparture": {
+                    "dateUtc": "2024-12-26T13:03:17.581Z",
+                    "dateLocal": "2024-12-26T13:03:17.581"
+                },
+                "actualGateDeparture": {
+                    "dateUtc": "2024-12-26T13:13:17.581Z",
+                    "dateLocal": "2024-12-26T13:13:17.581"
+                },
+                "publishedArrival": {
+                    "dateUtc": "2024-12-26T21:03:17.581Z",
+                    "dateLocal": "2024-12-26T21:03:17.581"
+                },
+                "estimatedGateArrival": {
+                    "dateUtc": "2024-12-26T21:03:17.581Z",
+                    "dateLocal": "2024-12-26T21:03:17.581"
+                },
+                "actualGateArrival": {
+                    "dateUtc": "2024-12-26T21:13:17.581Z",
+                    "dateLocal": "2024-12-26T21:13:17.581"
+                }
+            },
+            "codeshares": {
+                "codeshare": [
+                    {
+                        "fsCode": "WN",
+                        "flightNumber": "101",
+                        "relationship": "L"
+                    }
+                ]
+            },
+            "flightDurations": {
+                "blockMinutes": "480"
+            },
+            "airportResources": {
+                "departureTerminal": "B",
+                "departureGate": "4",
+                "arrivalTerminal": "A",
+                "arrivalGate": "3",
+                "baggage": "9"
+            },
+            "flightEquipment": {
+                "scheduledEquipmentIataCode": "787",
+                "actualEquipmentIataCode": "767",
+                "tailNumber": "TAIL1"
+            },
+            "flightStatusUpdates": {
+                "flightStatusUpdate": [
+                    {
+                        "updatedAt": {
+                            "dateUtc": "2024-12-26T13:03:17.581Z"
+                        },
+                        "source": "Simulated Event Source",
+                        "updatedTextFields": {
+                            "updatedTextField": [
+                                {
+                                    "field": "STS",
+                                    "originalText": "S",
+                                    "newText": "A"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "irregularOperations": {
+                "irregularOperation": [
+                    {
+                        "dateUtc": "2024-12-26T13:03:17.581Z",
+                        "message": "Diverted due to closed runway",
+                        "relatedFlightId": "2",
+                        "newArrivalAirportFsCode": "ATL"
+                    }
+                ]
+            },
+            "confirmedIncident": {
+                "publishedDate": "2024-12-26T13:03:17.581Z",
+                "message": "Plane skidded off the runway"
+            }
+        },
+        "event": {
+            "type": "EN_ROUTE"
+        },
+        "dataSource": "Simulated Event Source",
+        "dateTimeRecorded": "2024-12-26T13:03:17.581Z"
+    },
+    "appendix": {
+        "airlines": {
+            "airline": [
+                {
+                    "fs": "HY",
+                    "iata": "HY",
+                    "icao": "UZB",
+                    "name": "Uzbekistan Airways",
+                    "active": "true"
+                },
+                {
+                    "fs": "WN",
+                    "iata": "WN",
+                    "icao": "SWA",
+                    "name": "Southwest Airlines",
+                    "active": "true"
+                }
+            ]
+        },
+        "airports": {
+            "airport": [
+                {
+                    "fs": "ICN",
+                    "iata": "ICN",
+                    "icao": "RKSI",
+                    "faa": "",
+                    "name": "Seoul Incheon International Airport",
+                    "city": "Seoul",
+                    "cityCode": "SEL",
+                    "countryCode": "KR",
+                    "countryName": "Republic of Korea",
+                    "regionName": "Asia",
+                    "timeZoneRegionName": "Asia/Seoul",
+                    "weatherZone": "",
+                    "localTime": "2024-12-26T22:03:17.581",
+                    "utcOffsetHours": "9.0",
+                    "latitude": "37.458764",
+                    "longitude": "126.441961",
+                    "elevationFeet": "4",
+                    "classification": "1",
+                    "active": "true"
+                },
+                {
+                    "fs": "TAS",
+                    "iata": "TAS",
+                    "icao": "UTTT",
+                    "faa": "",
+                    "name": "Tashkent Islam Karimov International Airport",
+                    "city": "Tashkent",
+                    "cityCode": "TAS",
+                    "countryCode": "UZ",
+                    "countryName": "Uzbekistan",
+                    "regionName": "Asia",
+                    "timeZoneRegionName": "Asia/Tashkent",
+                    "weatherZone": "",
+                    "localTime": "2024-12-26T18:03:17.581",
+                    "utcOffsetHours": "5.0",
+                    "latitude": "41.257893",
+                    "longitude": "69.281204",
+                    "elevationFeet": "1406",
+                    "classification": "3",
+                    "active": "true"
+                }
+            ]
+        },
+        "equipments": {
+            "equipment": [
+                {
+                    "iata": "787",
+                    "name": "Boeing 787",
+                    "turboProp": "false",
+                    "jet": "true",
+                    "widebody": "true",
+                    "regional": "false"
+                },
+                {
+                    "iata": "767",
+                    "name": "Boeing 767 Passenger",
+                    "turboProp": "false",
+                    "jet": "true",
+                    "widebody": "true",
+                    "regional": "false"
+                }
+            ]
+        }
+    }
+}

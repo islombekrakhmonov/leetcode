@@ -8,9 +8,5 @@ func main() {
 
 func divisorGame(n int) bool {
 
-	for {
-		
-	}
-
-	return false
+	return n%2 == 0
 }
