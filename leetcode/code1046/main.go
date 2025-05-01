@@ -1,35 +1,35 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func main() {
-	fmt.Println(lastStoneWeight([]int{2, 7, 4, 1, 8, 1}))
+	fmt.Println(lastStoneWeight([]int{2, 2}))
 }
 
 func lastStoneWeight(stones []int) int {
 
-	k := len(stones)
-	for k > 0 {
-		max1, max2 := 0, 0
-		max1Index, max2Index := 0, 0
-		for i, v := range stones {
-			if max1 <= v {
-				max2 = max1
-				max1 = v
-				max1Index = i
-			} else if v > max2 && max1 != v {
-				max2 = v
-				max2Index = i
-			}
-		}
-		newSlice := append(stones[:max2Index], stones[max2Index:]...)
-		fmt.Println(max1Index, max2Index)
-		k--
-		fmt.Println(newSlice)
-		if max1 == max2 {
+	for {
+
+		if len(stones) == 0 {
+			return 0
 		}
 
+		if len(stones) == 1 {
+			return stones[0]
+		}
+
+		sort.Slice(stones, func(i, j int) bool {
+			return stones[i] > stones[j]
+		})
+
+		fmt.Println(stones)
+		if stones[0] != stones[1] {
+			stones = append(stones, stones[0]-stones[1])
+		}
+
+		stones = stones[2:]
 	}
-
-	return 0
 }

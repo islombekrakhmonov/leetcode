@@ -6,15 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(squareIsWhite("a1"))
-
-}
-
-func squareIsWhite(coordinates string) bool {
-	coor1FirstChar := int(coordinates[0])
-	coor1SecondChar, _ := strconv.Atoi(string(coordinates[1]))
-
-	return (coor1FirstChar+coor1SecondChar)%2 == 0
+	fmt.Println(checkTwoChessboards("a1", "c3"))
 }
 
 func checkTwoChessboards(coordinate1 string, coordinate2 string) bool {
