@@ -13,7 +13,7 @@ func countBinarySubstrings(s string) int {
 	for startIndex := 0; startIndex < len(s); startIndex++ {
 		for endIndex := startIndex + 1; endIndex <= len(s); endIndex++ {
 			substring := s[startIndex:endIndex]
-			if isEqual(substring) {
+			if isEqualAndConsecutive(substring) {
 				outputInt++
 			}
 		}
@@ -22,16 +22,27 @@ func countBinarySubstrings(s string) int {
 	return outputInt
 }
 
-func isEqual(s string) bool {
-	var count0, count1 int
+func isEqualAndConsecutive(s string) bool {
+	if len(s) == 0 {
+		return false
+	}
 
-	for _, v := range s {
-		if v == '1' {
-			count1++
-		} else {
+	var count0, count1 int
+	var transitions int
+	prev := s[0]
+
+	for i := 0; i < len(s); i++ {
+		if s[i] == '0' {
 			count0++
+		} else if s[i] == '1' {
+			count1++
+		}
+
+		if i > 0 && s[i] != prev {
+			transitions++
+			prev = s[i]
 		}
 	}
 
-	return count0 == count1
+	return transitions == 1 && count0 == count1
 }

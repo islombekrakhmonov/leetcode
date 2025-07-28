@@ -8,18 +8,22 @@ func main() {
 
 func mergeAlternately(word1 string, word2 string) string {
 	var output string
-    for i:=0; i<len(word1); i++ {
-		for l:= i; l<len(word2); l++{
+
+	longerStr := ""
+	if len(word1) > len(word2) {
+		longerStr = word1
+	} else {
+		longerStr = word2
+	}
+
+	for i := 0; i < len(longerStr); i++ {
+		if i < len(word1) {
 			output += string(word1[i])
-			output += string(word2[l])
-			break
+		}
+		if i < len(word2) {
+			output += string(word2[i])
 		}
 	}
-	if len(word1) > len(word2) {
-		output += string(word1[len(word2):])
-	}
-	if len(word1) < len(word2) {
-		output += string(word2[len(word1):])
-	}
+
 	return output
 }
