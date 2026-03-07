@@ -12,53 +12,35 @@ func main() {
 	node11 := &ListNode{Val: 18}
 	node12 := &ListNode{Val: 6}
 	node13 := &ListNode{Val: 10}
+	node14 := &ListNode{Val: 3}
 
 	//18,6,10,3
 	myList1.Next = node11
 	node11.Next = node12
 	node12.Next = node13
+	node13.Next = node14
 
 	fmt.Println(insertGreatestCommonDivisors(myList1.Next))
 }
 
 func insertGreatestCommonDivisors(head *ListNode) *ListNode {
+	curr := head
 
-	newList := &ListNode{}
-	current := newList
-
-	for curr := head; curr.Next != nil; curr = curr.Next {
-		current.Next = &ListNode{Val: curr.Val}
-		current = current.Next
-
+	for curr != nil && curr.Next != nil {
 		gcd := findGCD(curr.Val, curr.Next.Val)
-		current.Next = &ListNode{Val: gcd}
-		current = current.Next
-	}
+		newNode := &ListNode{Val: gcd}
 
-	current.Next = &ListNode{Val: head.Val}
-	for curr := head; curr.Next != nil; curr = curr.Next {
-		current.Next = &ListNode{Val: curr.Next.Val}
-	}
+		newNode.Next = curr.Next
+		curr.Next = newNode
 
-	return newList
+		curr = newNode.Next
+	}
+	return head
 }
 
 func findGCD(a, b int) int {
-	var output, max, min int
-
-	if a > b {
-		max = a
-		min = b
-	} else {
-		max = b
-		min = a
+	if b == 0 {
+		return a
 	}
-
-	for i := max; i > 0; i-- {
-		if min%i == 0 && max%i == 0 {
-			output = i
-			break
-		}
-	}
-	return output
+	return findGCD(b, a%b)
 }

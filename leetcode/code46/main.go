@@ -3,26 +3,33 @@ package main
 import "fmt"
 
 func main() {
-	permutations := Perm([]int{1, 2, 3})
+	permutations := permute([]int{1, 2, 3})
 	fmt.Println(permutations)
 }
-
-func Perm(a []int) [][]int {
-	return perm(a, 0)
-}
-
-func perm(a []int, i int) [][]int {
-	if i >= len(a) {
-		return [][]int{append([]int{}, a...)}
-	}
-
+func permute(nums []int) [][]int {
 	var result [][]int
-	for j := i; j < len(a); j++ {
-		a[i], a[j] = a[j], a[i]
-		permutations := perm(a, i+1)
-		result = append(result, permutations...)
-		a[i], a[j] = a[j], a[i]
+	var backtrack func(int)
+
+	backtrack = func(first int) {
+		// if all positions fixed, add a copy to results
+		if first == len(nums) {
+			perm := make([]int, len(nums))
+			copy(perm, nums)
+			result = append(result, perm)
+			return
+		}
+
+		for i := first; i < len(nums); i++ {
+			// swap current element with the first
+			nums[first], nums[i] = nums[i], nums[first]
+			// recursively fix the rest
+			backtrack(first + 1)
+			// backtrack (undo swap)
+			nums[first], nums[i] = nums[i], nums[first]
+			fmt.Println(nums)
+		}
 	}
 
+	backtrack(0)
 	return result
 }

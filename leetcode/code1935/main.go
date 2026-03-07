@@ -11,16 +11,18 @@ func main() {
 
 func canBeTypedWords(text string, brokenLetters string) int {
 	var output int
-	textArr := strings.Split(text," ")
+	textArr := strings.Split(text, " ")
 
-    Loop:
 	for _, word := range textArr {
+		broken := false
 		for _, letter := range brokenLetters {
-			if strings.ContainsRune(word, letter) {
-				continue Loop
+			if strings.Contains(word, string(letter)) {
+				broken = true
 			}
 		}
-		output++
+		if !broken {
+			output++
+		}
 	}
 	return output
 }

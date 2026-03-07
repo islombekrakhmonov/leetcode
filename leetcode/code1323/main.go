@@ -9,25 +9,20 @@ func main() {
 	fmt.Println(maximum69Number(9669))
 }
 
-func maximum69Number (num int) int {
+func maximum69Number(num int) int {
 	max := num
-	number := strconv.Itoa(num)
-	for i:=0; i<len(number); i++{
-		if number[i] == '6'{
-			number = number[:i] + "9" + number[i+1:]
-			digitInt, _ := strconv.Atoi(number)
-			if digitInt > max{
-				max = digitInt
+
+	numStr := strconv.Itoa(num)
+
+	for i := 0; i < len(numStr); i++ {
+		if numStr[i] == '6' {
+			formattedNum := numStr[:i] + "9" + numStr[i+1:]
+			formattedNumInt, _ := strconv.Atoi(formattedNum)
+			if formattedNumInt > max {
+				max = formattedNumInt
 			}
-			number = strconv.Itoa(num)
-		} else {
-			number = number[:i] + "6" + number[i+1:]
-			digitInt, _ := strconv.Atoi(number)
-			if digitInt > max{
-				max = digitInt
-			}
-			number = strconv.Itoa(num)
-		} 
+		}
 	}
+
 	return max
 }

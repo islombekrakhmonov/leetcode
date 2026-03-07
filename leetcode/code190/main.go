@@ -11,9 +11,12 @@ func main() {
 
 func reverseBits(num uint32) uint32 {
 
-	bits := strconv.FormatUint(uint64(num), 2)
+	bin := fmt.Sprintf("%b", num)
 
-	reversed := string(reverseSlice([]rune(bits)))
+	fmt.Println(bin)
+
+	reversed := string(reverseSlice([]rune(bin)))
+	fmt.Println(reversed)
 
 	output, _ := strconv.ParseUint(string(reversed), 2, 32)
 

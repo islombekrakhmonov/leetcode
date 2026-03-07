@@ -4,16 +4,52 @@ import "fmt"
 
 func main() {
 
-	fmt.Println(numTilePossibilities("AAC"))
+	fmt.Println(numTilePossibilities("AAB"))
 }
 
 func numTilePossibilities(tiles string) int {
-	letterCount := make(map[rune]int)
-	for _, ch := range tiles {
-		letterCount[ch]++
+	tilesCount := make(map[string]int)
+
+	perm := permute([]byte(tiles))
+
+	for _, char := range tiles {
+		tilesCount[string(char)]++
 	}
 
-	return backtrack(letterCount)
+	for _, v := range perm {
+		tilesCount[string(v)]++
+	}
+
+	fmt.Println(tilesCount)
+
+	return len(tilesCount)
+}
+
+func permute(nums []byte) [][]byte {
+	var result [][]byte
+	var backtrack func(int)
+
+	backtrack = func(first int) {
+		// if all positions fixed, add a copy to results
+		if first == len(nums) {
+			perm := make([]byte, len(nums))
+			copy(perm, nums)
+			result = append(result, perm)
+			return
+		}
+
+		for i := first; i < len(nums); i++ {
+			// swap current element with the first
+			nums[first], nums[i] = nums[i], nums[first]
+			// recursively fix the rest
+			backtrack(first + 1)
+			// backtrack (undo swap)
+			nums[first], nums[i] = nums[i], nums[first]
+		}
+	}
+
+	backtrack(0)
+	return result
 }
 
 func backtrack(letterCount map[rune]int) int {
